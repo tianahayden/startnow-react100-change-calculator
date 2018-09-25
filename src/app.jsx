@@ -10,6 +10,15 @@ class App extends Component {
       dollars: '',
       coins: '',
       dollarOutput: '',
+      twenties: '',
+      tens: '',
+      fives: '',
+      ones: '',
+      coinsOutput: '',
+      quarters: '',
+      dimes: '',
+      nickles: '',
+      pennies: '',
     };
 
     this.handleDueChange = this.handleDueChange.bind(this);
@@ -52,9 +61,9 @@ class App extends Component {
     var dollarOutput = []
     Number(dollars)
 
-    for (let i=0; i<dollarArr.length; i++) {
+    for (let i = 0; i < dollarArr.length; i++) {
       if (dollars > 0) {
-        var ans = Math.floor(dollars/ dollarArr[i])
+        var ans = Math.floor(dollars / dollarArr[i])
         dollarOutput.push(ans)
         dollars = dollars - (dollarArr[i] * ans)
       }
@@ -63,12 +72,36 @@ class App extends Component {
       }
     }
 
+    // calculates how much change to give in each coin type
+    var coinsArr = [25, 10, 5, 1]
+    var coinsOutput = []
+    Number(coins)
+
+    for (let i = 0; i < coinsArr.length; i++) {
+      if (coins > 0) {
+        var ans = Math.floor(coins / coinsArr[i])
+        coinsOutput.push(ans)
+        coins = coins - (coinsArr[i] * ans)
+      }
+      else {
+        coinsOutput.push(0)
+      }
+    }
+
+    // sets the state to be the correct change needed
     this.setState({
       dollarOutput: dollarOutput,
+      twenties: dollarOutput[0],
+      tens: dollarOutput[1],
+      fives: dollarOutput[2],
+      ones: dollarOutput[3],
+      coinsOutput: coinsOutput,
+      quarters: coinsOutput[0],
+      dimes: coinsOutput[1],
+      nickles: coinsOutput[2],
+      pennies: coinsOutput[3],
     })
 
-  
-    // need to grab twenies, tens, fives and ones from array and set the state of them
 
   }
 
@@ -91,11 +124,11 @@ class App extends Component {
               <div className='panel-heading'>Enter Information</div>
               <div className='panel-body'>
                 <label>How Much Is Due?</label>
-                <input value={dueValue} onChange={this.handleDueChange} type="number" className="form-control" placeholder="Enter due" />
+                <input value={dueValue} onChange={this.handleDueChange} name="amountDue" type="number" className="form-control" placeholder="Enter due" />
               </div>
               <div className='panel-body'>
                 <label>How Much Is Recieved?</label>
-                <input value={recievedValue} onChange={this.handleRecievedChange} type="number" className="form-control" placeholder="Enter recieved" />
+                <input value={recievedValue} onChange={this.handleRecievedChange} name="amountReceived" type="number" className="form-control" placeholder="Enter recieved" />
               </div>
               <div className='panel-footer'>
                 <button onClick={this.handleClick} className='btn btn-primary btn-block'>Calculate</button>
@@ -106,27 +139,47 @@ class App extends Component {
           <div className='col-sm-6'>
             <div className='panel panel-default'>
               <div className='panel-body'>
-                <div className='alert alert-success'>Total change due</div>
+                <div className='alert alert-success'>The total change due is ${this.state.totalChangeDue}</div>
 
                 <div className='row'>
                   <div className='col-sm-3'>
                     <div className='panel panel-default'>
-                      <div className='panel-body'>Twenties</div>
+                      <div className='panel-body text-center'>
+                        Twenties
+                      <h4 className='change'>
+                          {this.state.twenties}
+                        </h4>
+                      </div>
                     </div>
                   </div>
                   <div className='col-sm-3'>
                     <div className='panel panel-default'>
-                      <div className='panel-body'>Tens</div>
+                      <div className='panel-body text-center'>
+                        Tens
+                      <h4 className='change'>
+                          {this.state.tens}
+                        </h4>
+                      </div>
                     </div>
                   </div>
                   <div className='col-sm-3'>
                     <div className='panel panel-default'>
-                      <div className='panel-body'>Fives</div>
+                      <div className='panel-body text-center'>
+                        Fives
+                      <h4 className='change'>
+                          {this.state.fives}
+                        </h4>
+                      </div>
                     </div>
                   </div>
                   <div className='col-sm-3'>
                     <div className='panel panel-default'>
-                      <div className='panel-body'>Ones</div>
+                      <div className='panel-body text-center'>
+                        Ones
+                      <h4 className='change'>
+                          {this.state.ones}
+                        </h4>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -134,22 +187,42 @@ class App extends Component {
                 <div className='row'>
                   <div className='col-sm-3'>
                     <div className='panel panel-default'>
-                      <div className='panel-body'>Quarters</div>
+                      <div className='panel-body text-center'>
+                        Quarters
+                      <h4 className='change'>
+                          {this.state.quarters}
+                        </h4>
+                      </div>
                     </div>
                   </div>
                   <div className='col-sm-3'>
                     <div className='panel panel-default'>
-                      <div className='panel-body'>Dimes</div>
+                      <div className='panel-body text-center'>
+                        Dimes
+                      <h4 className='change'>
+                          {this.state.dimes}
+                        </h4>
+                      </div>
                     </div>
                   </div>
                   <div className='col-sm-3'>
                     <div className='panel panel-default'>
-                      <div className='panel-body'>Nickles</div>
+                      <div className='panel-body text-center'>
+                        Nickles
+                      <h4 className='change'>
+                          {this.state.nickles}
+                        </h4>
+                      </div>
                     </div>
                   </div>
                   <div className='col-sm-3'>
                     <div className='panel panel-default'>
-                      <div className='panel-body'>Pennies</div>
+                      <div className='panel-body text-center'>
+                        Pennies
+                      <h4 className='change'>
+                          {this.state.pennies}
+                        </h4>
+                      </div>
                     </div>
                   </div>
                 </div>
