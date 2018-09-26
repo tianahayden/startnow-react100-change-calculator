@@ -9,7 +9,7 @@ class Table extends Component {
         const divStyle = {
             height: '110px',
             width: '110px',
-          };
+        };
 
         return (
             <div className='col-sm-6'>
@@ -42,7 +42,7 @@ class Table extends Component {
                                     <div className='panel-body text-center' style={divStyle}>
                                         {this.props.result[2].name}
                                         <h4 className='change'>
-                                        {this.props.result[2].value}
+                                            {this.props.result[2].value}
                                         </h4>
                                     </div>
                                 </div>
@@ -64,7 +64,7 @@ class Table extends Component {
                                     <div className='panel-body text-center' style={divStyle}>
                                         {this.props.result[4].name}
                                         <h4 className='change'>
-                                        {this.props.result[4].value}
+                                            {this.props.result[4].value}
                                         </h4>
                                     </div>
                                 </div>
@@ -74,7 +74,7 @@ class Table extends Component {
                                     <div className='panel-body text-center' style={divStyle}>
                                         {this.props.result[5].name}
                                         <h4 className='change'>
-                                        {this.props.result[5].value}
+                                            {this.props.result[5].value}
                                         </h4>
                                     </div>
                                 </div>
@@ -84,7 +84,7 @@ class Table extends Component {
                                     <div className='panel-body text-center' style={divStyle}>
                                         {this.props.result[6].name}
                                         <h4 className='change'>
-                                        {this.props.result[6].value}
+                                            {this.props.result[6].value}
                                         </h4>
                                     </div>
                                 </div>
@@ -94,7 +94,7 @@ class Table extends Component {
                                     <div className='panel-body text-center' style={divStyle}>
                                         {this.props.result[7].name}
                                         <h4 className='change'>
-                                        {this.props.result[7].value}
+                                            {this.props.result[7].value}
                                         </h4>
                                     </div>
                                 </div>
@@ -140,6 +140,20 @@ class App extends Component {
                     coins: [
                         { name: 'Fifty Cents', value: 50 },
                         { name: 'Ten Cents', value: 10 },
+                    ],
+                },
+                JPY: {
+                    bills: [
+                        { name: '10,000 Yen', value: 10000 },
+                        { name: '5,000 Yen', value: 5000 },
+                        { name: '2,000 Yen', value: 2000 },
+                        { name: '1,000 Yen', value: 1000 },
+                        { name: '500 Yen', value: 500 },
+                        { name: '100 Yen', value: 100 },
+                        { name: '10 Yen', value: 10 },
+                        { name: '1 Yen', value: 1 },
+                    ],
+                    coins: [
                     ],
                 },
             },
@@ -197,7 +211,7 @@ class App extends Component {
                 result.push({ name: this.state.currencies[this.state.selectedCurrency].bills[i].name, value: 0 })
             }
         }
-        
+
 
         // calculates how much change to give in each coin type
         for (let i = 0; i < coinsArr.length; i++) {
@@ -245,6 +259,7 @@ class App extends Component {
                                 <select name="selectedCurrency" onChange={this.handleChange} className="form-control">
                                     <option value="USD">USD</option>
                                     <option value="MXN">MXN</option>
+                                    <option value="JPY">JPY</option>
                                 </select>
                             </div>
                             <div className='panel-footer'>
